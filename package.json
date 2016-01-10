@@ -1,0 +1,30 @@
+{
+  "name": "minimalistic-blog-post-import",
+  "version": "1.0.0",
+  "description": "Import all your ghost.org exported posts into minimalistic-blog mongodb schema",
+  "main": "index.js",
+  "bin": {
+    "mb-post-import": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://alexchiri@github.com/alexchiri/minimalistic-blog-post-import.git"
+  },
+  "keywords": [
+    "react",
+    "isomorphic",
+    "javascript"
+  ],
+  "author": "Alexandru Chiritescu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexchiri/minimalistic-blog-post-import/issues"
+  },
+  "homepage": "https://github.com/alexchiri/minimalistic-blog-post-import#readme",
+  "dependencies": {
+    "kerberos": "0.0.17",
+    "lodash": "3.10.1",
+    "mongoose": "4.3.5",
+    "yargs": "3.31.0"
+  }
+}
