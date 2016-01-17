@@ -7,6 +7,7 @@ var _ = require('lodash');
 var argv = require('yargs');
 var readline = require('readline');
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 
 argv = argv
     .usage('Import all your ghost.org exported posts into minimalistic-blog mongodb schema')
@@ -85,10 +86,13 @@ var BlogPostSchema = new Schema({
     content: String,
     image: String,
     date_published: Date,
-    date_updated: Date
+    date_updated: Date,
+    draft: Boolean
 });
 
 var AuthorSchema = new Schema({
+    username: String,
+    password: String,
     first_name: String,
     last_name: String,
     email: String,
@@ -100,6 +104,7 @@ var Author = mongoose.model('Author', AuthorSchema);
 var BlogPost = mongoose.model('BlogPost', BlogPostSchema);
 
 var author = new Author(JSON.parse(authorJSONString));
+author.password = bcrypt.hashSync(author.password, 8);
 
 author.save(function(err) {
     if(err) {
@@ -127,7 +132,8 @@ run(function* () {
                     content: postData.content,
                     image: postData.image ? postData.image : null,
                     date_published: postData.date_published ? postData.date_published : null,
-                    date_updated: postData.date_updated ? postData.date_updated : null
+                    date_updated: postData.date_updated ? postData.date_updated : null,
+                    draft: postData.draft == true
                 });
 
                 blogPost.save(function(err) {
