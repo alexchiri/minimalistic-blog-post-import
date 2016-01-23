@@ -87,7 +87,8 @@ var BlogPostSchema = new Schema({
     image: String,
     date_published: Date,
     date_updated: Date,
-    draft: Boolean
+    draft: Boolean,
+    tags: String
 });
 
 var AuthorSchema = new Schema({
@@ -130,6 +131,7 @@ run(function* () {
                     slug: postData.slug,
                     link: null,
                     content: postData.content,
+                    tags: postData.tags ? postData.tags : null,
                     image: postData.image ? postData.image : null,
                     date_published: postData.date_published ? postData.date_published : null,
                     date_updated: postData.date_updated ? postData.date_updated : null,
